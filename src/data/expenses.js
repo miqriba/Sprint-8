@@ -34,7 +34,7 @@ function generateExpenses(count, max, startDate) {
   const exp = [];
   for (let i = 0; i < count; i++) {
     exp.push({
-      amount: -Math.floor(Math.random() * max),
+      amount: -Math.ceil(Math.random() * max),
       date: randomDate(new Date(startDate), new Date()),
     });
   }
@@ -61,9 +61,12 @@ function sortExpensesByDate(expenses) {
 //   return combinedExpensesArray;
 // }
 
-// De momento cogemos los ultimos 7 gastos (aunque no correspondan a los días concretos)
+// De momento cogemos los ultimos 7 gastos (aunque no correspondan a los días concretos) y eliminamos los cobros de 1500€
 function getLastWeek(expenses) {
-  return expenses.slice(-7).map((e) => -e.amount);
+  return expenses
+    .filter((e) => e.amount !== 1500)
+    .slice(-7)
+    .map((e) => -e.amount);
 }
 
 function getPercentage(expenses) {

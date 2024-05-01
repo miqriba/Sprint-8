@@ -1,8 +1,11 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useContext } from "react";
+import { MainContext } from "../context/context";
 import { expenses } from "../data/expenses";
 
 function TotalBalance() {
   const [totalBalance, setTotalBalance] = useState();
+
+  const { t } = useContext(MainContext);
 
   useEffect(() => {
     let total = 0;
@@ -19,7 +22,7 @@ function TotalBalance() {
           style={{ color: "#ffffff88", fontSize: "11px" }}
           className="fw-bold mb-0"
         >
-          Balanç total
+          {t("description.balance")}
         </p>
         <p className="fw-bold m-0 fs-4">{`${totalBalance} €`}</p>
       </div>
