@@ -1,10 +1,14 @@
 import { React, useContext } from "react";
-import { lastWeekExpenses, percentagePoint } from "../data/expenses";
+import {
+  getWeekExpenses,
+  lastWeekExpenses,
+  percentagePoint,
+} from "../data/expenses";
 import { MainContext } from "../context/context";
 import BarsChart from "./BarsChart";
 
 function MainBlock() {
-  const { t } = useContext(MainContext);
+  const { t, week, weekExpenses, variation } = useContext(MainContext);
 
   return (
     <div
@@ -13,7 +17,9 @@ function MainBlock() {
     >
       <div className="card-body">
         <h5 className="card-title m-1 mb-4 text-start fw-bold">
-          {t("description.week")}
+          {week === 1
+            ? t("description.week")
+            : t("description.week2") + week + t("description.week3")}
         </h5>
         <BarsChart></BarsChart>
         <div className="d-flex flex-row justify-content-between mt-4">
@@ -24,27 +30,15 @@ function MainBlock() {
             >
               {t("description.today")}
             </p>
-            <h3 className="fw-bold text-start">{`${lastWeekExpenses[6]} €`}</h3>
+            <h3 className="fw-bold text-start">{`${weekExpenses[6]} €`}</h3>
           </div>
           <div>
-            <p className="fw-bold m-0 mt-2 text-end fs-6">{`${percentagePoint}`}</p>
+            <p className="fw-bold m-0 mt-2 text-end fs-6">{`${variation}`}</p>
             <p className="fw-bold m-0 text-end" style={{ fontSize: "11px" }}>
               {t("description.percentage")}
             </p>
           </div>
         </div>
-
-        {/* {lastWeekExpenses.map((e, index) => (
-          <div key={index}>
-            <p>{`${e} €`}</p>
-          </div>
-        ))} */}
-        {/* {expenses.map((e, index) => (
-          <div key={index}>
-            <p>{`${e.amount}`}</p>
-            <p>{`${e.date.toString().split(" ").slice(0, 4).join(" ")}`}</p>
-          </div>
-        ))} */}
       </div>
     </div>
   );

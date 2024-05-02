@@ -62,17 +62,23 @@ function sortExpensesByDate(expenses) {
 // }
 
 // De momento cogemos los ultimos 7 gastos (aunque no correspondan a los días concretos) y eliminamos los cobros de 1500€
-function getLastWeek(expenses) {
-  return expenses
+export function getLastWeek(expenses) {
+  const exp = expenses
     .filter((e) => e.amount !== 1500)
     .slice(-7)
     .map((e) => -e.amount);
+  return exp;
 }
 
-function getPercentage(expenses) {
+export function getWeekExpenses(expenses, week) {
+  return expenses
+    .filter((e) => e.amount !== 1500)
+    .slice(-7 * week, week === 1 ? expenses.length : -7 * (week - 1))
+    .map((e) => -e.amount);
+}
+
+export function getPercentage(wExpenses) {
   const percentage =
-    Math.round(
-      (1000 * (lastWeekExpenses[6] - lastWeekExpenses[5])) / lastWeekExpenses[5]
-    ) / 10;
+    Math.round((1000 * (wExpenses[6] - wExpenses[5])) / wExpenses[5]) / 10;
   return (percentage > 0 ? "+" : "") + ` ${percentage} %`;
 }

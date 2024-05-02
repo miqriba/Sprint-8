@@ -5,7 +5,7 @@ import { expenses } from "../data/expenses";
 function TotalBalance() {
   const [totalBalance, setTotalBalance] = useState();
 
-  const { t } = useContext(MainContext);
+  const { t, week, setWeek } = useContext(MainContext);
 
   useEffect(() => {
     let total = 0;
@@ -30,6 +30,7 @@ function TotalBalance() {
         <button
           className="rounded-circle m-2 justify-self-end"
           style={{ width: "50px", height: "50px", backgroundColor: "#EC755C" }}
+          onClick={() => setWeek(week + 1)}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -48,6 +49,7 @@ function TotalBalance() {
         <button
           className="rounded-circle justify-self-end"
           style={{ width: "50px", height: "50px", backgroundColor: "#EC755C" }}
+          onClick={() => setWeek(week === 1 ? 1 : week - 1)}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

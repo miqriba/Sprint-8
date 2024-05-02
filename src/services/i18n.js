@@ -17,6 +17,8 @@ i18n
           description: {
             balance: "Total balance",
             week: "Expenses - last week",
+            week2: "Expenses - ",
+            week3: " weeks ago",
             today: "Expenses today",
             percentage: "compared to yesterday",
           },
@@ -27,6 +29,8 @@ i18n
           description: {
             balance: "Balance total",
             week: "Gastos - última semana",
+            week2: "Gastos - hace ",
+            week3: " semanas",
             today: "Gastos hoy",
             percentage: "respecto ayer",
           },
@@ -37,6 +41,8 @@ i18n
           description: {
             balance: "Balanç total",
             week: "Despeses - última setmana",
+            week2: "Despeses - fa ",
+            week3: " setmanes",
             today: "Despeses avui",
             percentage: "respecte a ahir",
           },
